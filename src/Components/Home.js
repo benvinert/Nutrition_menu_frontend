@@ -135,7 +135,7 @@ import Check from './Check';
     // Get data from Server
     function GetRequest(food_id,food_name)
     {
-        return fetch(`https://nutrition-menu-backend.herokuapp.com/Calculate/GetValuesOfFood/${food_id}`,
+        return fetch(`https://nutrition-menu-backend-1.herokuapp.com/${food_id}`,
          {
              method : 'GET'    
         }).then((response) => response.json()).then((resp) => foodContext[1]((prev) => {console.log("AllValues : ",resp); return {...prev,Foodname : food_name,ValuesOfFood : resp,valuesPer100Gram : resp}}))
