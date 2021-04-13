@@ -55,7 +55,7 @@ export default function GramsPicker(props) {
     <div>
     
       <FormControl className={classes.formControl}>
-        <InputLabel id="demo-controlled-open-select-label">Grams</InputLabel>
+        <InputLabel id="demo-controlled-open-select-label">גרם</InputLabel>
         <Select
           labelId="demo-controlled-open-select-label"
           id="demo-controlled-open-select"
