@@ -13,6 +13,7 @@ import PictureAsPdfIcon from '@material-ui/icons/PictureAsPdf';
 export default function SearchInput(props){
     var foodContext = useContext(UserContext)
     var ClientMenuContext = useContext(MenuContext)
+    const [gramsZero,setGramsZero] = useState(false)
   
     const promiseOptions = (inputValue) => 
       new Promise(resolve => {
@@ -60,26 +61,32 @@ export default function SearchInput(props){
       className="basic-single"
       classNamePrefix="select"
       isClearable={true}
-      name="color"
+      name="select"
       onChange={handleChange}
       options={fooddata}
       />
     
       <div className="Searchinput-Buttons">
         {props.ShowValues ? <Button variant="contained" style={{background: '#BE7052' ,color : 'white'}} onClick={() => props.AddFood(foodContext[0].Foodname)}>
-          <AddCircleIcon/>Add
+          <AddCircleIcon/>הוסף לתפריט
         </Button> : ""}&nbsp;&nbsp;        
       
-    
+        {gramsZero ? <h3>לא ניתן למצוא מוצר לפי 0 גרם</h3> : null}
         <Button style={{background: '#BE7052' ,color : 'white'}} variant="contained" onClick={() => {
-            props.CalculatePerGrams()
+            if(!foodContext[0].Grams || foodContext[0].Grams == 0){
+              setGramsZero(true)
+            }
+            else{
+              props.CalculatePerGrams()
+              setGramsZero(false)
+            }
             console.log(ClientMenuContext[0])
             }}>
-              <GetAppIcon/>Get Nutrition Values
+              <GetAppIcon/>הצג את הערכים התזונתיים
         </Button>&nbsp;&nbsp;
         
         <Button variant="contained" color="primary" onClick={() => push("/Check")}>
-          <PictureAsPdfIcon/>Save As PDF
+          <PictureAsPdfIcon/>שמור כקובץ PDF
         </Button>
         </div>
       
